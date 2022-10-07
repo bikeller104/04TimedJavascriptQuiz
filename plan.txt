@@ -1,0 +1,15 @@
+in this project
+    i need to have a way to store all of the questions and determine the correct answers
+    I need to re draw the main part of the screen base on users button clicks
+    I need to score the quiz
+    I need to allow the user to input text to save with the score
+    I need to save scores in local storage
+    I need to implement a timer that shows time left on the quiz
+        the timer will be in the top left of the screen and will always be present
+    I need a title screen that has buttons to start the quiz and view high scores
+            the view high scores button will always be in the top left of the screen
+
+
+bonus
+    I sort the high scores before displaying them
+    I save both the time and the score.
