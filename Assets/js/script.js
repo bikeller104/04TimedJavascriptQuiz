@@ -1,7 +1,11 @@
 var timerEl = document.querySelector("#timer")
 var secondsLeft = 75;
 
+var highScoreEl = document.querySelector("#highscorebutton");
 var mainPageEl = document.querySelector(`#mainpage`);
+
+mainPageEl.addEventListener('click', handlePageClick);
+highScoreEl.addEventListener('click',handlePageClick);
 
 //set a default time
 timerEl.textContent = "0";
@@ -25,15 +29,15 @@ function startTimer()
     }
 }
 
-function clearMain()
+function clearElement(element)
 {
-    Array.from(mainPageEl.children).forEach(child => mainPageEl.removeChild(child));
+    Array.from(element.children).forEach(child => element.removeChild(child));
 }
 
 
 function createStartPage()
 {
-    clearMain();
+    clearElement(mainPageEl);
     //create the title
     var header = document.createElement("h1");
     header.setAttribute('Id', "mainheader");
@@ -48,6 +52,7 @@ function createStartPage()
     var button = document.createElement("h2");
     button.textContent = "Start Quiz";
     button.setAttribute('class', 'buttonstyling button' );
+    button.setAttribute('id', 'startquizbutton');
 
     mainPageEl.appendChild(header);
     mainPageEl.appendChild(section);
@@ -55,21 +60,81 @@ function createStartPage()
 
 }
 
+var questionIndex = 0;
 
 function startQuiz()
 {
-    clearMain();
+    questionIndex = 0;
+    clearElement(mainPageEl);
+    createQuizLayout();
+
 }
+
+var question;
+var answers;
 
 function createQuizLayout()
 {
+    console.log("creating quiz layout");
+    question = document.createElement("h2");
+    answers = document.createElement("ul");
+    
+    console.log(question);
+    console.log(answers);
+    mainPageEl.appendChild(question);
+    mainPageEl.appendChild(answers);
+    console.log(allJSQuestions[questionIndex]);
+    updateQuizContent(allJSQuestions[questionIndex]);
 
+
+}
+
+function updateQuizContent(nextQuestion)
+{
+    clearElement(answers);
+    console.log("starting question  " + nextQuestion);
+    console.log(nextQuestion.questionText);
+    question.TextContent = nextQuestion.questionText;
+    for(var i = 0; i < nextQuestion.questionAnswers.length; i++)
+    {
+        var listItem = document.createElement('li');
+        listItem.setAttribute('class', 'button buttonstyling, quizanswer')
+        listItem.textContent = nextQuestion.questionAnswers[i];
+        answers.appendChild(li);
+    }
+
+    questionIndex++;
+    if(questionIndex == allJSQuestions.length )
+    {
+        //go to the highscores page
+    }
 }
 
 
 
-
-
+function handlePageClick(event)
+{
+    event.stopPropogation();
+  if(event.target.matches("#highscorebutton"))
+  {
+    console.log("hit high score button");
+    //load the high score page
+  }
+  if(event.target.matches('#startquizbutton'))
+  {
+    console.log("hit start quiz button");
+    startQuiz();
+  }
+  if(event.target.matches(".quizanswer"))
+  {
+    console.log("quiz answer selected");
+  }
+  if(event.target.matches("#mainScreenButton"))
+  {
+    console.log("hit main screen button");
+    createStartPage();
+  }
+}
 
 
 
@@ -125,7 +190,7 @@ this array will hold all of the javaScript Questions
 Questions copied from W3 Schools
     https://www.w3shools.com/quiztest/quiztest.asp?qtest=JS
 */
-var alJSQuestions = [
+var allJSQuestions = [
     //question 1
     new QuizQuestion(
         "Inside which HTML element do we put the JavaScript?",
