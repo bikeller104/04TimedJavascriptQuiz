@@ -1,9 +1,11 @@
 var timerEl = document.querySelector("#timer")
 var secondsLeft = 75;
 
+var mainPageEl = document.querySelector(`#mainpage`);
+
 //set a default time
 timerEl.textContent = "0";
-
+createStartPage();
 
 function setTimer()
 {
@@ -23,9 +25,45 @@ function startTimer()
     }
 }
 
+function clearMain()
+{
+    Array.from(mainPageEl.children).forEach(child => mainPageEl.removeChild(child));
+}
+
+
 function createStartPage()
 {
-    
+    clearMain();
+    //create the title
+    var header = document.createElement("h1");
+    header.setAttribute('Id', "mainheader");
+    header.textContent = "Quiz Questions";
+    //create the text 
+    var section = document.createElement('p')
+    section.setAttribute('id','regulartext');
+    section.textContent = `Try to answer the following javascript \
+    related coding questions. Keep in mind correct answers will\ 
+    reduce the time left.`
+    //create the button
+    var button = document.createElement("h2");
+    button.textContent = "Start Quiz";
+    button.setAttribute('class', 'buttonstyling button' );
+
+    mainPageEl.appendChild(header);
+    mainPageEl.appendChild(section);
+    mainPageEl.appendChild(button);
+
+}
+
+
+function startQuiz()
+{
+    clearMain();
+}
+
+function createQuizLayout()
+{
+
 }
 
 
@@ -43,33 +81,44 @@ function createStartPage()
 
 
 
-
+/*
 //this object will hold the data for each question
 var QuizQuestion =  {
     questionText: "",
     //this array will hold QuizAnswer objects
     questionAnswers: [],
 
-}
+}*/
 //constructor for quizQuestion is declared outside the 
 //object definition ???
-function QuizQuestion(text, answers)
-{
-    this.questionText = text;
-    this.questionAnswers = answers;
+class QuizQuestion {
+    constructor(text, answers) {
+        this.questionText = text;
+        this.questionAnswers = answers;
+    }
 }
-
+/*
 //this object will hold the possible Answer text
 //and whether that answer is right or wrong
 var QuizAnswer = {
     answerText: "",
     answerCorrect: false
 }
+*/
 
-new QuizAnswer(answer, isCorrect)
-{
-    this.answerText = answer;
-    this.answerCorrect = isCorrect;
+//this comes from the quick actions converting
+/*
+    function QuizAnswer(answer,isCorrect)
+    {
+        this.answerText = answer;
+        this.answerCorrect = isCorrect;
+    }
+*/
+class QuizAnswer {
+    constructor(answer, isCorrect) {
+        this.answerText = answer;
+        this.answerCorrect = isCorrect;
+    }
 }
 /*
 this array will hold all of the javaScript Questions
@@ -121,7 +170,7 @@ var alJSQuestions = [
         `The external JavaScript file must contain the <script> tag.`,
         [
             new QuizAnswer(`True`, false),
-            new QuizAnswer(`False`, ture)
+            new QuizAnswer(`False`, true)
         ]
     ),
     //skip 6

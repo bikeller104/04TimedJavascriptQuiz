@@ -1,3 +1,14 @@
+.timer{
+}
+
+.buttonstyling{
+    background-color: rgb(110, 110, 245) ;
+    color: white;
+    border: 5px solid black;
+    border-radius: .5rem;
+    padding: .5rem;
+    text-align: center;
+}
 #topbar {
     display: flex;
     flex-flow: row wrap;
@@ -7,5 +18,23 @@
 #highscorebutton {
 }
 
-.timer{
+
+#mainheader
+{
+    text-align:center;
+    font-size: 2rem;
+}
+
+#regulartext
+{
+    text-align:left;
+    font-size: 1rem;
+
+}
+
+#mainpage{
+    display:flex;
+    flex: 0 0 200px;
+    flex-direction: column;
+    align-content: center;
 }
