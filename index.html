@@ -5,9 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Time</title>
-    <link rel="mycustomstyles" href="./Assets/css/style.css">
+    <!--
+    rel is the relationship between this docuent and the linked document
+    for a css document rel must be a stylesheet
+        other valid rels are 
+        
+        https://www.dofactory.com/html/link/rel
+
+        "stylesheet | icons | canonical | 
+              dns-prefetch | author | help | license | 
+              prev | next | search | alternate"
+-->
+    <link rel="stylesheet" type="text/css" href="./Assets/css/style.css">
 </head>
 <body>
+    <header id="topbar">
+        <h1 id="highScoreButton" class="button">View Highscores</h1>
+        <h1 id="timer"></h1>
+    </header>
+
     <script src="./Assets/js/script.js"></script>
 </body>
 </html>
