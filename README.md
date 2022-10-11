@@ -7,10 +7,10 @@ This website serves as a coding review quiz. The main screen contains a descript
 ## Visuals
 
 
-![Password Generator](./Final%20Screenshot.png)
+![QuizWebsite](./Final%20Screenshot.png)
 
 ## Installation
-Go to <br/> https://bikeller104.github.io/03SecurePasswordGenerator/  <br/>to access the webpage
+Go to <br/> https://bikeller104.github.io/04TimedJavascriptQuiz/  <br/>to access the webpage
 
 
 ## Contributing
@@ -20,7 +20,7 @@ Brent Keller
 Author: Brent Keller
 
 ## License
-MIT
+None
 
 ## Project status
-Finished
+In work
