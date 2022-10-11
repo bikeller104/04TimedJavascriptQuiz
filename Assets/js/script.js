@@ -1,5 +1,5 @@
 var timerEl = document.querySelector("#timer")
-var secondsLeft = 75;
+var secondsLeft = 15;
 
 var highScoreEl = document.querySelector("#highscorebutton");
 var mainPageEl = document.querySelector(`#mainpage`);
@@ -11,21 +11,26 @@ highScoreEl.addEventListener('click',handlePageClick);
 timerEl.textContent = "0";
 createStartPage();
 
+var timerInterval;
 function setTimer()
 {
-    var timerInterval = setInterval(startTimer, 1000);
+    timerInterval = setInterval(startTimer, 1000);
 }
 
 function startTimer()
 {
+    console.log("one second has passed");
     secondsLeft--;
-    timerEl.TextContent = secondsLeft;
+    console.log("setting time left to " + secondsLeft);
+    timerEl.textContent = secondsLeft;
 
-    if(secondsLeft == 0)
+    if(secondsLeft <= 0)
     {
-        clearInterval();
+        console.log("timer is done");
+        clearInterval(timerInterval);
         //write a function 
         //to go to the high score screen
+        createHighScoresPage();
     }
 }
 
@@ -57,6 +62,33 @@ function createStartPage()
     mainPageEl.appendChild(header);
     mainPageEl.appendChild(section);
     mainPageEl.appendChild(button);
+}
+
+function createHighScoresPage()
+{
+    clearElement(mainPageEl);
+    var highScoresBox = document.createElement("div");
+    highScoresBox.setAttribute('class', "displaybox");
+    console.log(highScoresBox);
+    var highScoreTitle = document.createElement("h2");
+    highScoreTitle.setAttribute('class','centertext');
+    highScoreTitle.textContent = "Leaderboard";
+    console.log(highScoreTitle);
+    mainPageEl.appendChild(highScoreTitle);
+    mainPageEl.appendChild(highScoresBox);
+
+
+    var textEl = document.createElement('textarea');
+    mainPageEl.appendChild(textEl);
+    textEl.addEventListener('update', handleTextUpdate );
+
+
+
+
+}
+
+function handleTextUpdate(event)
+{
 
 }
 
@@ -66,7 +98,9 @@ function startQuiz()
 {
     questionIndex = 0;
     clearElement(mainPageEl);
-    createQuizLayout();
+    //createQuizLayout();
+    console.log("starting quiz timer");
+    setTimer();
 
 }
 
@@ -94,7 +128,8 @@ function updateQuizContent(nextQuestion)
     clearElement(answers);
     console.log("starting question  " + nextQuestion);
     console.log(nextQuestion.questionText);
-    question.TextContent = nextQuestion.questionText;
+    question.textContent = nextQuestion.questionText;
+    console.log(question.textContent);
     for(var i = 0; i < nextQuestion.questionAnswers.length; i++)
     {
         var listItem = document.createElement('li');
@@ -114,26 +149,27 @@ function updateQuizContent(nextQuestion)
 
 function handlePageClick(event)
 {
-    event.stopPropogation();
-  if(event.target.matches("#highscorebutton"))
-  {
-    console.log("hit high score button");
-    //load the high score page
-  }
-  if(event.target.matches('#startquizbutton'))
-  {
-    console.log("hit start quiz button");
-    startQuiz();
-  }
-  if(event.target.matches(".quizanswer"))
-  {
-    console.log("quiz answer selected");
-  }
-  if(event.target.matches("#mainScreenButton"))
-  {
-    console.log("hit main screen button");
-    createStartPage();
-  }
+    event.stopPropagation();
+    if(event.target.matches("#highscorebutton"))
+    {
+      console.log("hit high score button");
+      //load the high score page
+      createHighScoresPage();
+    }
+    if(event.target.matches('#startquizbutton'))
+    {
+      console.log("hit start quiz button");
+      startQuiz();
+    }
+    if(event.target.matches(".quizanswer"))
+    {
+      console.log("quiz answer selected");
+    }
+    if(event.target.matches("#mainScreenButton"))
+    {
+      console.log("hit main screen button");
+      createStartPage();
+    }
 }
 
 

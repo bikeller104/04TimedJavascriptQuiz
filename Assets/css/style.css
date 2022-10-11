@@ -9,6 +9,26 @@
     padding: .5rem;
     text-align: center;
 }
+
+
+.displaybox{
+    display: flex;
+
+}
+
+.displayboxstyling
+{
+    box-shadow: 0, 1px, 1px, 0;
+}
+
+.centertext
+{
+    text-align: center;
+}
+
+
+
+
 #topbar {
     display: flex;
     flex-flow: row wrap;
